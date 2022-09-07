@@ -24,5 +24,6 @@ substitute abcd1234 with your SSO.
 3) In the interactive node load Anaconda and open jupyter notebooks:
 
 module load Anaconda3/2021.11
+
 jupyter notebook --no-browser --ip=*
 
