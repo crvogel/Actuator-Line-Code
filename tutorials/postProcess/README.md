@@ -13,11 +13,13 @@ to this node. This port will just create a link to make it possible to use
 the browser. You won't need to do anything else in this terminal - just keep
 open.
 
-ssh -L 8888:arc-c304:8888 ball5392@arc-login.arc.ox.ac.uk
+ssh -L 8888:arc-c304:8888 abcd1234@arc-login.arc.ox.ac.uk
 
 or
 
-ssh -L 8888:arc-c305:8888 ball5392@arc-login.arc.ox.ac.uk
+ssh -L 8888:arc-c305:8888 abcd1234@arc-login.arc.ox.ac.uk
+
+substitute abcd1234 with your SSO.
 
 3) In the interactive node load Anaconda and open jupyter notebooks:
 
