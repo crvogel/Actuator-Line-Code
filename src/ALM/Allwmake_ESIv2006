@@ -1,0 +1,39 @@
+#!/bin/bash
+set -x
+
+BASE=fvOptionsTidal
+FOAM_SRC=$WM_PROJECT_DIR/src
+
+rm -r $BASE > /dev/null 2>&1
+
+mkdir -p $BASE/sources/derived
+#mkdir -p $BASE/sources/general
+#cp -r $FOAM_SRC/fvOptions/fvOptions $BASE
+cp -r $FOAM_SRC/finiteVolume/cfdTools/general/fvOptions $BASE
+cp -r $FOAM_SRC/fvOptions/Make      $BASE
+ex -sc '1d2|x'  fvOptionsTidal/Make/files
+sed -i '/^corrections/d' fvOptionsTidal/Make/files
+
+cp -r actuationLineSource $BASE/sources/derived/actuationLineSource
+
+sed -i '/fvOptions\//d' $BASE/Make/files
+sed -i '/$(general/d'   $BASE/Make/files
+sed -i '/$(derived/d'   $BASE/Make/files
+sed -i '/$(inter/d'     $BASE/Make/files
+
+sed -i '/derivedSources=sources\/derived/ a\
+$(derivedSources)/actuationLineSource/actuationLineSource.C'    $BASE/Make/files
+
+sed -i '/derivedSources=sources\/derived/ a\
+$(derivedSources)/actuationLineSource/flowBlockingSource.C'      $BASE/Make/files
+
+sed -i 's@LIBBIN)/libfvOptions@USER_LIBBIN)/libfvOptionsTidal@' $BASE/Make/files
+
+sed -i '/EXE_INC/a\\t-I$(LIB_SRC)\/fvOptions\/lnInclude \\' $BASE/Make/options
+sed -i '/LIB_LIBS/a\\t-lfvOptions \\' $BASE/Make/options
+ 
+cd $BASE
+echo "wmake start"
+wclean; wmake
+echo "wmake end"
+cd ../

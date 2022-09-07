@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+rm -rf log*
+rm -rf slurm*
+
+rm -rf processor*
+rm -rf postProcessing
+rm -rf turbineOutput
+rm -rf 0 
+rm -rf EnSight

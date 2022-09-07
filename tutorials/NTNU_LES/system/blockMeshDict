@@ -1,0 +1,113 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+xMin  		-3.66;        // actual upstream distance
+xMax		 7.49712;     // actual downstream distance is 7.49 but this is 
+// modified to fit exactly 156 elements of size D/12.5 = 0.07152. 
+yMin		-1.35888;       // the actual Y distance is almost exactly 3 D 
+// therefore Ny = 3*12.5 = 37.5. I'm therefore extending slightly to Ny=38 
+// therefore 38*0.07152 = 2.71776  which means that each side is 1.35888.
+yMax	 	1.35888;
+zMin     	0;
+zMax	 	1.8;
+// finally the actual Z distance is almost exactly 2D which means that the number of 
+// cells at z is 25.
+nx       	156;
+ny		 	38;
+nz		 	25;
+// those give an overall of 148200 hex mesh.
+
+vertices        
+(
+    ( $xMin   $yMin   $zMin)
+    ( $xMax   $yMin   $zMin)
+    ( $xMax   $yMax   $zMin)
+    ( $xMin   $yMax   $zMin)
+    ( $xMin   $yMin   $zMax)
+    ( $xMax   $yMin   $zMax)
+    ( $xMax   $yMax   $zMax)
+    ( $xMin   $yMax   $zMax)
+
+);
+
+blocks          
+(
+    hex ( 0  1  2  3  4  5  6  7) ($nx $ny $nz) simpleGrading (1 1 1)
+);
+
+edges           
+(
+);
+
+boundary
+(
+    TOP
+    {
+        type symmetry;
+        faces
+        (
+            ( 4  5  6  7)
+        );
+    }
+    BOTTOM
+    {
+        type symmetry;
+        faces
+        (
+            ( 0  3  2  1)
+        );
+    }
+   	INLET
+    { 
+        type patch;
+        neighbourPatch east;
+        faces
+        (
+            ( 0  4  7  3)
+        );
+    }
+    OUTLET
+    { 
+        type patch;
+        neighbourPatch west;
+        faces
+        (
+            ( 1  2  6  5)
+        );
+    }
+    LEFT
+    { 
+        type symmetry;
+        faces
+        (
+            ( 3  7  6  2)
+        );
+    }
+    RIGHT
+    { 
+        type symmetry;
+        faces
+        (
+            ( 0  1  5  4)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# ===================== SLURM SETTINGS ========================= #
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=2G
+#SBATCH --time=01:00:00
+#SBATCH --job-name=insert_name
+#SBATCH --mail-user=wtvr1234@balliol.ox.ac.uk
+#SBATCH --mail-type=ALL
+#SBATCH --partition=interactive
+
+
+# ======================= LOAD MODULES ========================= #
+#cd "${0%/*}" || exit                     # Run from this directory
+module load OpenFOAM/v2006-foss-2020a
+source $FOAM_BASH
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# ====================  RUN THE POST PROCESS =================== #
+reconstructPar -latestTime 				>log.reconstructPar
+#postProcess -func sample 				>log.postProcess

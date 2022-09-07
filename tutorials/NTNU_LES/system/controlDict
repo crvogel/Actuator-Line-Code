@@ -1,0 +1,65 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+	location 	"system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include "../setUp"
+
+libs 				("libfvOptionsTidal_majorupdate.so");
+
+application     	pimpleFoam;
+
+startFrom       	latestTime;
+
+startTime       	0;
+
+stopAt          	endTime;
+
+endTime			    8;            // 141 periods. 41 for convergence and 100 for data collection 
+
+deltaT	       		0.000468;     // T/100 
+
+writeControl   		timeStep;
+
+writeInterval     	700;
+
+purgeWrite      	2;
+
+writeFormat     	ascii;
+
+writePrecision  	9;
+
+writeCompression 	off;
+
+timeFormat      	general;
+
+timePrecision   	9;
+
+runTimeModifiable 	true;
+
+timeStartAveraging 	1.872;
+
+
+functions
+{
+	#include "functionObjects/FOturbulenceFields"
+	#include "functionObjects/FOfieldAverage"
+	#include "functionObjects/FOprobes"
+	#include "functionObjects/FOsurfaces"
+	#include "functionObjects/FOsample"
+	#include "functionObjects/FOsolve"
+}
+
+// ************************************************************************* //

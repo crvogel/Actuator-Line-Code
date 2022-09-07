@@ -1,0 +1,115 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      turbineProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+globalProperties
+{
+    outputControl       "timeStep";
+    outputInterval      1;
+}
+
+turbine0
+{
+	#include "../setUp"
+
+	// --- General
+    turbineType         				"T2";
+    baseLocation        				(0.00001 0.000001 0.00001); 
+    fluidDensity        				1.225;  // in kg/m^3
+    numBladePoints      				50;
+    pointDistType       				"cosine";
+    rotationDir         				"ccw";
+    Azimuth             				0.0;
+    RotSpeed            				1260;   // in RPM.
+	// 1RPM   = 1/60 Hz   = 2PI/60 rad/s 
+	// 1rad/s = 1/2/PI Hz = 60/2/PI RPM
+    NacYaw              				0.0;  // in degrees.
+    pitchZero           				0;      // in degrees.
+	bladeForceCorrector					0;
+
+	// --- Sampling
+	samplingMethod						"lineAverage";
+	numSamplePoints						8;
+    sphereRadiusScalar  				1.1;
+	
+	// Constant sampling distance
+    sampleDistParam                     #eval{1.1*3*$epsilon};  // in m.
+    sampleDistScaler                    1e30;
+
+	/*
+	// Sampling distance as a function of the smear radius
+    sampleDistParam                     -1;
+    sampleDistScaler                    1.1; // smear radius multiplier
+	*/
+
+
+	// --- Look-up of forces
+    tipRootLossCorrType 				"None";
+    tipSpeedRatioShen                   6;
+    c1Faxi								0.1219; 
+    c2Faxi								21.52;
+    c3Faxi                              0.596;
+    c1Ftan								0.0984; 
+    c2Ftan								13.026;
+    c3Ftan                              0.5548;
+    airfoilInterpolationMethod 			"LinearInterpolation";
+    rotorUref           				(3.3  0.0 0.0); // induced velocity for each turbine
+    rotorUturb          				0.100;          // only used in "TUInterpolation" method. 
+	// Estimated 
+    dynamicGustModel     				"None";
+
+	// --- Smearing keep only one of the following blocks and comment out the rest
+
+    smearingModel						"Global";
+    epsilon             				$epsilon;	               
+    smearRadius         				#eval{ 3*$epsilon };
+	localChordFraction					1e30;
+	epsilonFunctionPow					1e30;
+
+	/*
+    smearingModel						"localChord";
+    epsilon             				1e30;	               
+    smearRadius         				1e30;
+	localChordFraction					1.2;
+	epsilonFunctionPow					1e30;
+
+    smearingModel						"liftCoefficient";
+    epsilon             				1e30;	               
+    smearRadius         				1e30;
+	localChordFraction					1.2;
+	epsilonFunctionPow					1e30;
+
+    smearingModel						"localChordCapped";
+    epsilon             				$epsilon;	               
+    smearRadius         				1e30;
+	localChordFraction					1.2;
+	epsilonFunctionPow					1e30;
+
+    smearingModel						"powerFunction";
+    epsilon             				$epsilon;	               
+    smearRadius         				1e30;
+	localChordFraction					1.2;
+	epsilonFunctionPow					3;
+
+    smearingModel						"cosineFunction";
+    epsilon             				$epsilon;	               
+    smearRadius         				1e30;
+	localChordFraction					1.2;
+	epsilonFunctionPow					3;
+	*/
+
+}
+
+// ************************************************************************* //

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# ===================== SLURM SETTINGS ========================= #
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=48
+#SBATCH --mem-per-cpu=2G
+#SBATCH --time=04:00:00
+#SBATCH --job-name=insert_name
+#SBATCH --mail-user=wtvr1234@eng.ox.ac.uk
+#SBATCH --mail-type=ALL
+#SBATCH --partition=short
+
+# ======================= LOAD MODULES ========================= #
+#cd "${0%/*}" || exit                     # Run from this directory
+module load OpenFOAM/v2006-foss-2020a
+source $FOAM_BASH
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# ======================= SET INPUT FILES ====================== #
+foamDictionary -entry "nbSubdomains" -set $SLURM_NTASKS setUp 
+
+# =======================  RUN THE CODE ======================== #
+
+
+if [[ -d processor$(($SLURM_NTASKS-1)) ]] && [[ ! -d processor$(($SLURM_NTASKS)) ]]
+then
+	echo " Field already decomposed"
+	mpirun -np $SLURM_NTASKS pimpleFoam -parallel > log.pimpleFoam.$SLURM_JOBID
+else 
+	echo " Field needs decomposition"
+	rm -r processor* 	
+	cp -r 0.org 0
+	decomposePar 								  > log.decomposePar 
+	mpirun -np $SLURM_NTASKS pimpleFoam -parallel > log.pimpleFoam.$SLURM_JOBID
+fi

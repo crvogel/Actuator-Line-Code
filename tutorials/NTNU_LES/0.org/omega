@@ -1,0 +1,59 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// l = 0.1c = 0.01343
+// cave = 3.4177;
+// epslion = cm*k^(3/2)/l 
+//omega = k^0.5/l
+
+turbOmega 1.77385; 
+
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform $turbOmega;
+
+boundaryField
+{
+    INLET
+    {
+        type            fixedValue;
+        value           uniform $turbOmega;
+    }
+    OUTLET
+    {
+        type            zeroGradient;
+    }
+    BOTTOM
+    {
+        type            symmetry;
+    }
+    TOP
+    {
+        type            symmetry;
+    }
+    LEFT
+    {
+        type            symmetry;
+    }
+    RIGHT
+    {
+        type            symmetry;
+    }
+}
+
+
+// ************************************************************************* //

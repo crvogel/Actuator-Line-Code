@@ -1,0 +1,167 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+probesInst
+{
+    type    				probes;
+    libs    				(sampling);
+    name    				probes;
+    writeControl   			timeStep;
+    writeInterval  			1;
+	interpolationScheme		cell;
+	fixedLocations			true;
+	timeStart      			0;
+	includeOutOfBounds		false;
+    fields					(p U);
+
+    probeLocations
+    ( 
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty-$rotorDiam/2} #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty+$rotorDiam/2} #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz+$rotorDiam/2} )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz-$rotorDiam/2} )
+
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+    );
+}
+
+probesStat
+{
+    type    				probes;
+    libs    				(sampling);
+    name    				probes;
+    writeControl   			timeStep;
+    writeInterval  			1;
+	interpolationScheme		cell;
+	fixedLocations			true;
+    timeStart      			${/timeStartAveraging};
+	includeOutOfBounds		false;
+    fields					(UPrime2Mean UMean );
+
+    probeLocations
+    ( 
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty-$rotorDiam/2} #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty+$rotorDiam/2} #eval {$rootz} 			   )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz+$rotorDiam/2} )
+		(#eval {$rootx+$rotorDiam} #eval {$rooty} 			   #eval {$rootz-$rotorDiam/2} )
+
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+2*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+3*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+4*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+5*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+6*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+7*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+8*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+9*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 				 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty-$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty+$rotorDiam/2}  	 #eval {$rootz} 			   	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz+$rotorDiam/2} 	)
+		(#eval {$rootx+10*$rotorDiam} #eval {$rooty} 			  	 #eval {$rootz-$rotorDiam/2} 	)
+
+
+    );
+}
+
+
+// ************************************************************************* //

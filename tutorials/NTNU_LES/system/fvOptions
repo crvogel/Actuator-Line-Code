@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+	version 2.0;
+	format ascii;
+	class dictionary;
+	location "system";
+	object fvOptions;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+turbine1
+{
+	type 			actuationLineSource;
+	active 			on;
+	selectionMode	all;
+	debug			on;
+	actuationLineSourceCoeffs
+	{
+		fieldNames
+		(
+			U
+		);
+		interpolationScheme
+		{
+			U pointMVC;
+		}
+	}
+}
+
+//blockcell
+//{
+//        type 				flowBlockingSource;
+//        active 			on;
+//        selectionMode 	all;
+//        flowBlockingSourceCoeffs
+//        {
+//                fieldNames
+//                (
+//                        U
+//                );
+//                characteristicVelocity 100;
+//                geometryNames
+//                (
+//                        nacelle
+//                        tower1
+//                        tower2
+//                        tower3
+//                        tower4
+//                );
+//                nacelle
+//                {
+//                        type        nacelle;
+//                        axisStart ( -0.045    0.0  0.8);
+//                        axisEnd   (  0.562    0.0  0.8);
+//                        radius      0.045;
+//                }
+//
+//                tower1
+//                {
+//                        type        circularCylinder;
+//                        axisStart   (0.1322 0.0 0.0);
+//                        axisEnd     (0.1322 0.0 0.8);
+//						radius 	    0.0255;
+//                }
+//
+//                tower2
+//                {
+//                        type        circularCylinder;
+//                        axisStart   (0.1322 0.0 0.0);
+//                        axisEnd     (0.1322 0.0 0.643);
+//						radius 	    0.0305;
+//                }
+//
+//                tower3
+//                {
+//                        type        circularCylinder;
+//                        axisStart   (0.1322 0.0 0.0);
+//                        axisEnd     (0.1322 0.0 0.4825);
+//						radius 	    0.041;
+//                }
+//
+//                tower4
+//                {
+//                        type        circularCylinder;
+//                        axisStart   (0.1322 0.0 0.0);
+//                        axisEnd     (0.1322 0.0 0.2435);
+//						radius 	    0.051;
+//                }
+//
+//        }
+//}
+
+
+
+// ************************************************************************* //

@@ -1,0 +1,96 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+surfacesInst
+{
+    type            		surfaces;
+    libs            		(sampling);
+    write	    			true;
+
+    writeControl    		writeTime;
+    writeInterval			1;
+
+
+    surfaceFormat   		ensight;
+    fields          		(U p );
+
+    interpolationScheme 	cellPoint;  
+	includeOutOfBounds		false;
+
+    surfaces
+    (
+        horizontal
+        {
+            type            		cuttingPlane;
+            planeType       		pointAndNormal;
+            pointAndNormalDict
+            {
+				point   (#eval #{ ${/rootx}  #} #eval #{ ${/rooty} #}  #eval #{ ${/rootz} #});
+                normal  (0 0 1);
+            }
+            interpolate     true;
+        }
+		vertical
+        {
+            type            		cuttingPlane;
+            planeType       		pointAndNormal;
+            pointAndNormalDict
+            {
+				point   (#eval #{ ${/rootx}  #} #eval #{ ${/rooty} #}  #eval #{ ${/rootz} #});
+                normal  (0 1 0);
+            }
+            interpolate     true;
+        }
+    );
+}
+
+surfacesStat
+{
+    type            surfaces;
+    libs            (sampling);
+    write	    	true;
+
+    writeControl    writeTime;
+    writeInterval	1;
+
+
+    surfaceFormat   ensight;
+    fields          (U p );
+
+    interpolationScheme cellPoint;  //<- default
+
+    surfaces
+    (
+        horizontal
+        {
+            type            		cuttingPlane;
+            planeType       		pointAndNormal;
+            pointAndNormalDict
+            {
+				point   (#eval #{ ${/rootx}  #} #eval #{ ${/rooty} #}  #eval #{ ${/rootz} #});
+                normal  (0 0 1);
+            }
+            interpolate     true;
+        }
+		vertical
+        {
+            type            		cuttingPlane;
+            planeType       		pointAndNormal;
+            pointAndNormalDict
+            {
+				point   (#eval #{ ${/rootx}  #} #eval #{ ${/rooty} #}  #eval #{ ${/rootz} #});
+                normal  (0 1 0);
+            }
+            interpolate     true;
+        }
+    );
+}
+
+
+
+// ************************************************************************* //

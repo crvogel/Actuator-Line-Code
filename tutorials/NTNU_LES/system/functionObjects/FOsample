@@ -1,0 +1,153 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+sample
+{
+    type    				sets;
+    libs    				(sampling);
+
+	interpolationScheme		cellPoint;
+    fields					(UMean UPrime2Mean);
+	setFormat				raw;
+
+    timeStart      			${/timeStartAveraging};
+    writeControl   			writeTime;
+    writeInterval  			1;
+
+	includeOutOfBounds		false;
+
+  	sets
+  	(
+		horizontal_1D
+      	{
+      	    type        uniform;
+      	    axis        xyz;
+      	    start       (0.894  -1.001    0.8 );
+      	    end         (0.894   1.001    0.8 );
+      	    nPoints     100;
+      	}
+    	horizontal_3D
+    	{
+    	    type        uniform;
+    	    axis        xyz;
+    	    start       (2.682  -1.001   0.8);
+    	    end         (2.682   1.001   0.8);
+    	    nPoints     100;
+    	}
+
+    	horizontal_5D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (4.47  -1.001    0.8);
+		    end         (4.47   1.001    0.8);
+		    nPoints     100;
+		}
+
+		horizontal_4D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (3.576  -1.001    0.8);
+		    end         (3.576   1.001    0.8);
+		    nPoints     100;
+		}
+
+		horizontal_5.5D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (4.917  -1.001  0.8);
+		    end         (4.917   1.001  0.8);
+		    nPoints     100;
+		}
+
+		horizontal_6D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (5.364  -1.001  0.8);
+		    end         (5.364   1.001  0.8);
+		    nPoints     100;
+		}
+
+		horizontal_7D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (6.258  -1.001  0.8);
+		    end         (6.258   1.001  0.8);
+		    nPoints     100;
+		}
+
+    	vertical_1D
+    	{
+    	    type        uniform;
+    	    axis        xyz;
+    	    start       (0.894  -1.001    0.8 );
+    	    end         (0.894   1.001    0.8 );
+    	    nPoints     100;
+    	}
+    	 
+    	vertical_3D
+    	{
+    	    type        uniform;
+    	    axis        xyz;
+    	    start       (2.682  -1.001   0.8);
+    	    end         (2.682   1.001   0.8);
+    	    nPoints     100;
+    	}
+
+    	vertical_5D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (4.47  -1.001    0.8);
+		    end         (4.47   1.001    0.8);
+		    nPoints     100;
+		}
+
+		vertical_4D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (3.576  -1.001    0.8);
+		    end         (3.576   1.001    0.8);
+		    nPoints     100;
+		}
+
+		vertical_5.5D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (4.917  -1.001  0.8);
+		    end         (4.917   1.001  0.8);
+		    nPoints     100;
+		}
+
+		vertical_6D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (5.364  -1.001  0.8);
+		    end         (5.364   1.001  0.8);
+		    nPoints     100;
+		}
+
+		vertical_7D
+		{
+		    type        uniform;
+		    axis        xyz;
+		    start       (6.258  -1.001  0.8);
+		    end         (6.258   1.001  0.8);
+		    nPoints     100;
+		}
+  	);
+}
+
+// ************************************************************************* //
