@@ -22,18 +22,18 @@ Actuator Line Code in src/.
 1) To clone this repository to your local Linux machine:
 git clone https://github.com/crvogel/Actuator-Line-Code.git
 
-2) To move branch 
+2) To move branch:
 git branch <name>
 
-3) To add changes
+3) To add changes:
 git add
 
-4) To commit changes
+4) To commit changes:
 git commit -m "Comment of what you did"
 
-5) To push stuff to the remote repo
+5) To push stuff to the remote repo:
 git push https://github.com/crvogel/Actuator-Line-Code
 
-6) To pull the latest version 
+6) To pull the latest version:
 git pull
 
