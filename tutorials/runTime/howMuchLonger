@@ -4,24 +4,24 @@
 # elapsed so far. It creates a hidden file that it then deletes named .temp .
 # Feel free to add it in your .bashrc. It's handy.
 
-if [ -f temp ] 
+if [ -f .temp ] 
 then
-	echo " File called temp already exists, I'm exiting because I don't want to overwrite"
+	echo " File called .temp already exists, I'm exiting because I don't want to overwrite"
 	return
 fi
 
 if [[ $1 == "" ]] 
 then
-	cat log.pimpleFoam >temp
+	cat log.pimpleFoam >.temp
 else
-	cat $1 >temp
+	cat $1 >.temp
 fi
 
-nProcs=$(grep "^nProcs" temp | awk '{print $3}')
-nbIter=$(grep "^Time = " temp | wc -l | awk '{print $1}')
-startTime=$(grep "^Time = " temp | head -1 |awk '{print $3}')
-latestTime=$(grep "^Time = " temp | tail -n 1 |awk '{print $3}')
-execTime=$(grep "^ExecutionTime" temp | tail -n 1 | awk '{print $3}')
+nProcs=$(grep "^nProcs" .temp | awk '{print $3}')
+nbIter=$(grep "^Time = " .temp | wc -l | awk '{print $1}')
+startTime=$(grep "^Time = " .temp | head -1 |awk '{print $3}')
+latestTime=$(grep "^Time = " .temp | tail -n 1 |awk '{print $3}')
+execTime=$(grep "^ExecutionTime" .temp | tail -n 1 | awk '{print $3}')
 endTime=$(grep "^endTime" system/controlDict | tail -n 1 | awk '{print $2}' | tr -d ';')
 execTimeHours=$(echo $execTime\/3600 | bc -l )
 execTimeMins=$(echo $execTime\/60 | bc -l )
@@ -56,5 +56,5 @@ echo -n $execTimeHours |	cut -b1-5
 echo -n "Hours needed to go from " $latestTime " to " $endTime ": " 
 echo  $totalHoursNeeded |	cut -b1-5
 
-rm temp
+rm .temp
 
