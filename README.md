@@ -17,7 +17,7 @@ include: tidal and wind rotors, LES and RANS simulations.
 notebooks complementing the output files of the 
 Actuator Line Code in src/.
 
-# GIT COMMANDS
+## git commands
 
 1) To clone this repository to your local Linux machine:
 git clone https://github.com/crvogel/Actuator-Line-Code.git
@@ -37,4 +37,3 @@ git push https://github.com/crvogel/Actuator-Line-Code
 6) To pull the latest version 
 git pull
 
-===========================================================
