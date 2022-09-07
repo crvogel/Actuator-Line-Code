@@ -2,7 +2,7 @@
 
 Updated Actuator Line respository 06/09/2022
 
-This repository contains:
+## Conents of repository
 
 1) src/ The source files of the actuator line code, 
 compatible with OpenFOAM version 2006.
