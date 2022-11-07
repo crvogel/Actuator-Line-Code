@@ -46,12 +46,12 @@ turbine0
 	
 	// Constant sampling distance
     sampleDistParam                     #eval{1.1*3*$epsilon};  // in m.
-    sampleDistScaler                    1e30;
+    sampleDistScalar                    1e30;
 
 	/*
 	// Sampling distance as a function of the smear radius
     sampleDistParam                     -1;
-    sampleDistScaler                    1.1; // smear radius multiplier
+    sampleDistScalar                    1.1; // smear radius multiplier
 	*/
 
 
